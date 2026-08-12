@@ -1,0 +1,49 @@
+# Node / frontend build
+node_modules/
+dist-client/
+dist-server/
+coverage/
+npm-debug.log*
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.local
+
+# Python virtual environments and caches
+.venv/
+.venv-*/
+venv/
+__pycache__/
+*.py[cod]
+*.pyd
+.pytest_cache/
+*.egg-info/
+
+# Local tooling and temporary files
+tmp/
+.cache/
+.agents/
+.codex/
+*.log
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Course materials are references, not application source
+1.1.*
+.1.1.*
+아주대교재_*.pdf
+아주대교재_*.pdf.txt
+
+# Cloud Shell transfer/hotfix archives
+deployment/*.zip
+*.tgz
+
+# Generated presentation QA artifacts
+output/presentation/preview/
+output/presentation/*/
+output/presentation/*미리보기*
+*.inspect.ndjson

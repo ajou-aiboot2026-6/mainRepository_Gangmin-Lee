@@ -1,0 +1,12 @@
+.gcloudignore
+.git/
+.env
+node_modules/
+dist-client/
+dist-server/
+coverage/
+tmp/
+output/
+*.docx
+*.pdf
+*.log

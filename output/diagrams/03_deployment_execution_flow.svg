@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#F8FAFC"/><stop offset="1" stop-color="#EDF7F6"/></linearGradient>
+    <linearGradient id="head" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#12203F"/><stop offset="1" stop-color="#16847D"/></linearGradient>
+    <filter id="s" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#172744" flood-opacity=".09"/></filter>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#3E70BD"/></marker>
+    <marker id="p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7457BF"/></marker>
+    <marker id="t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#168B80"/></marker>
+    <style>text{font-family:Pretendard,"Noto Sans KR","Malgun Gothic",Arial,sans-serif}.lt{font-size:19px;font-weight:850;fill:#18345F}.ls{font-size:13px;font-weight:650;fill:#6B7C97}.ct{font-size:17px;font-weight:850;fill:#172744}.cb{font-size:13px;font-weight:650;fill:#60718C}.tag{font-size:12px;font-weight:850}.ico{font-size:12px;font-weight:900;fill:#fff}.lab{font-size:12px;font-weight:850}</style>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="45" y="30" width="1510" height="92" rx="25" fill="url(#head)" filter="url(#s)"/>
+  <circle cx="84" cy="76" r="20" fill="#fff" opacity=".16"/><path d="M75 67h18v18H75zM80 62h8M84 85v7" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <text x="120" y="70" font-size="28" font-weight="850" fill="#fff">머물곳 | 배포·실행 흐름</text><text x="120" y="98" font-size="15" font-weight="600" fill="#DDF2EF">코드 배포 · 온라인 추천 · 데이터 운영</text>
+  <rect x="1350" y="55" width="165" height="36" rx="18" fill="#fff" opacity=".14"/><circle cx="1375" cy="73" r="6" fill="#68E2B8"/><text x="1391" y="78" font-size="13" font-weight="800" fill="#fff">REVISION READY</text>
+
+  <!-- deploy -->
+  <rect x="45" y="145" width="1510" height="215" rx="24" fill="#fff" stroke="#DCE6F5" stroke-width="2" filter="url(#s)"/><rect x="45" y="145" width="10" height="215" rx="5" fill="#3E70BD"/>
+  <rect x="75" y="166" width="78" height="26" rx="13" fill="#E6F0FF"/><text x="114" y="184" text-anchor="middle" class="tag" fill="#3265AE">배포</text><text x="170" y="185" class="lt">소스 → 새 revision</text><text x="350" y="185" class="ls">컨테이너 기반 자동 배포</text>
+  <g fill="none" stroke="#3E70BD" stroke-width="3" marker-end="url(#b)"><path d="M315 278h65"/><path d="M615 278h65"/><path d="M915 278h65"/><path d="M1215 278h65"/></g>
+  <g filter="url(#s)">
+    <rect x="85" y="220" width="230" height="115" rx="18" fill="#F2F7FF" stroke="#B9D0F1" stroke-width="2"/><circle cx="117" cy="260" r="16" fill="#3E70BD"/><text x="117" y="265" text-anchor="middle" class="ico">SRC</text><text x="150" y="255" class="ct">Source Code</text><text x="150" y="280" class="cb">React · Express · ADK</text><text x="110" y="310" class="cb">Dockerfile · tests</text>
+    <rect x="380" y="220" width="235" height="115" rx="18" fill="#F2F7FF" stroke="#B9D0F1" stroke-width="2"/><circle cx="412" cy="260" r="16" fill="#3E70BD"/><text x="412" y="265" text-anchor="middle" class="ico">CB</text><text x="445" y="255" class="ct">Cloud Build</text><text x="445" y="280" class="cb">프로덕션 이미지</text><text x="405" y="310" class="cb">build · test</text>
+    <rect x="680" y="220" width="235" height="115" rx="18" fill="#F2F7FF" stroke="#B9D0F1" stroke-width="2"/><circle cx="712" cy="260" r="16" fill="#3E70BD"/><text x="712" y="265" text-anchor="middle" class="ico">AR</text><text x="745" y="255" class="ct">Artifact Registry</text><text x="745" y="280" class="cb">이미지 보관</text><text x="705" y="310" class="cb">digest · version</text>
+    <rect x="980" y="220" width="235" height="115" rx="18" fill="#F5F1FF" stroke="#D0C0EE" stroke-width="2"/><circle cx="1012" cy="260" r="16" fill="#7457BF"/><text x="1012" y="265" text-anchor="middle" class="ico">CR</text><text x="1045" y="255" class="ct">Cloud Run</text><text x="1045" y="280" class="cb">새 revision 생성</text><text x="1005" y="310" class="cb">Web · Express API</text>
+    <rect x="1280" y="220" width="235" height="115" rx="18" fill="#E9FBF3" stroke="#9BD9BB" stroke-width="2"/><circle cx="1312" cy="260" r="16" fill="#188B59"/><text x="1312" y="265" text-anchor="middle" class="ico">OK</text><text x="1345" y="255" class="ct">트래픽 전환</text><text x="1345" y="280" class="cb">revision 100%</text><text x="1305" y="310" class="cb">공개 URL</text>
+  </g>
+
+  <!-- runtime -->
+  <rect x="45" y="385" width="1510" height="220" rx="24" fill="#FBF9FF" stroke="#E0D5F4" stroke-width="2" filter="url(#s)"/><rect x="45" y="385" width="10" height="220" rx="5" fill="#7457BF"/>
+  <rect x="75" y="406" width="100" height="26" rx="13" fill="#EEE7FF"/><text x="125" y="424" text-anchor="middle" class="tag" fill="#6949B0">온라인 실행</text><text x="192" y="425" class="lt">실시간 추천 요청</text>
+  <g fill="none" stroke="#7457BF" stroke-width="3" marker-end="url(#p)"><path d="M315 510h65"/><path d="M660 510h65"/><path d="M1075 510h65"/><path d="M1340 510h45"/></g>
+  <g filter="url(#s)">
+    <rect x="85" y="460" width="230" height="105" rx="18" fill="#F2F7FF" stroke="#B9D0F1" stroke-width="2"/><circle cx="117" cy="512" r="16" fill="#3E70BD"/><text x="117" y="517" text-anchor="middle" class="ico">UI</text><text x="150" y="505" class="ct">브라우저</text><text x="150" y="530" class="cb">채팅 · 지도</text>
+    <rect x="380" y="460" width="280" height="105" rx="18" fill="#F5F1FF" stroke="#D0C0EE" stroke-width="2"/><circle cx="412" cy="512" r="16" fill="#7457BF"/><text x="412" y="517" text-anchor="middle" class="ico">API</text><text x="445" y="505" class="ct">Cloud Run API</text><text x="445" y="530" class="cb">검증 · 병렬 호출 · 계산</text>
+    <rect x="725" y="448" width="350" height="130" rx="18" fill="#fff" stroke="#D0C0EE" stroke-width="2"/><text x="750" y="478" class="ct">서비스 호출</text><rect x="750" y="494" width="90" height="55" rx="13" fill="#FFF5DE"/><text x="795" y="518" text-anchor="middle" class="tag" fill="#8B651E">Gemini</text><text x="795" y="538" text-anchor="middle" class="cb">일정·설명</text><rect x="850" y="494" width="95" height="55" rx="13" fill="#EAF4FF"/><text x="898" y="518" text-anchor="middle" class="tag" fill="#3265AE">Maps</text><text x="898" y="538" text-anchor="middle" class="cb">장소·경로</text><rect x="955" y="494" width="95" height="55" rx="13" fill="#E9F9F5"/><text x="1003" y="518" text-anchor="middle" class="tag" fill="#117B72">BQ·RAG</text><text x="1003" y="538" text-anchor="middle" class="cb">후보·근거</text>
+    <rect x="1140" y="460" width="200" height="105" rx="18" fill="#E9FBF3" stroke="#9BD9BB" stroke-width="2"/><circle cx="1172" cy="512" r="16" fill="#188B59"/><text x="1172" y="517" text-anchor="middle" class="ico">5</text><text x="1205" y="505" class="ct">Top 5</text><text x="1205" y="530" class="cb">지도 · 이동 상세</text>
+    <rect x="1385" y="460" width="130" height="105" rx="18" fill="#fff" stroke="#B9D0F1" stroke-width="2"/><circle cx="1417" cy="512" r="16" fill="#3E70BD"/><text x="1417" y="517" text-anchor="middle" class="ico">LOG</text><text x="1450" y="505" class="ct">관측</text><text x="1450" y="530" class="cb">로그·추적</text>
+  </g>
+
+  <!-- batch -->
+  <rect x="45" y="630" width="1510" height="210" rx="24" fill="#F7FCFB" stroke="#CEE7E2" stroke-width="2" filter="url(#s)"/><rect x="45" y="630" width="10" height="210" rx="5" fill="#168B80"/>
+  <rect x="75" y="651" width="100" height="26" rx="13" fill="#DCF5F0"/><text x="125" y="669" text-anchor="middle" class="tag" fill="#117B72">배치·운영</text><text x="192" y="670" class="lt">데이터 갱신</text><text x="325" y="670" class="ls">주 1회 실행</text>
+  <g fill="none" stroke="#168B80" stroke-width="3" marker-end="url(#t)"><path d="M315 758h65"/><path d="M615 758h65"/><path d="M915 758h65"/><path d="M1215 758h65"/></g>
+  <g filter="url(#s)">
+    <rect x="85" y="710" width="230" height="95" rx="17" fill="#fff" stroke="#A8DCCF" stroke-width="2"/><circle cx="117" cy="758" r="16" fill="#168B80"/><text x="117" y="763" text-anchor="middle" class="ico">SC</text><text x="150" y="753" class="ct">Scheduler</text><text x="150" y="776" class="cb">월요일 03:00</text>
+    <rect x="380" y="710" width="235" height="95" rx="17" fill="#fff" stroke="#A8DCCF" stroke-width="2"/><circle cx="412" cy="758" r="16" fill="#168B80"/><text x="412" y="763" text-anchor="middle" class="ico">JOB</text><text x="445" y="753" class="ct">Cloud Run Job</text><text x="445" y="776" class="cb">공공 API 수집</text>
+    <rect x="680" y="710" width="235" height="95" rx="17" fill="#fff" stroke="#A8DCCF" stroke-width="2"/><circle cx="712" cy="758" r="16" fill="#168B80"/><text x="712" y="763" text-anchor="middle" class="ico">GCS</text><text x="745" y="753" class="ct">Cloud Storage</text><text x="745" y="776" class="cb">원천 보존</text>
+    <rect x="980" y="710" width="235" height="95" rx="17" fill="#fff" stroke="#A8DCCF" stroke-width="2"/><circle cx="1012" cy="758" r="16" fill="#168B80"/><text x="1012" y="763" text-anchor="middle" class="ico">DB</text><text x="1045" y="753" class="ct">BigQuery · RAG</text><text x="1045" y="776" class="cb">정제 · 색인</text>
+    <rect x="1280" y="710" width="235" height="95" rx="17" fill="#fff" stroke="#A8DCCF" stroke-width="2"/><circle cx="1312" cy="758" r="16" fill="#3E70BD"/><text x="1312" y="763" text-anchor="middle" class="ico">SEC</text><text x="1345" y="753" class="ct">보안 · 운영</text><text x="1345" y="776" class="cb">Secret · IAM · Trace</text>
+  </g>
+  <rect x="45" y="858" width="1510" height="27" rx="13" fill="#172744"/><text x="75" y="877" font-size="12" font-weight="750" fill="#DDE8F8">gemini-2.5-flash · revision seoul-stay-web-00005-5b5 · 100% traffic</text><text x="1250" y="877" font-size="12" font-weight="750" fill="#DDE8F8">demoData:false</text>
+</svg>

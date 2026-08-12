@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1220" viewBox="0 0 1800 1220" role="img" aria-labelledby="title desc">
+  <title id="title">머물곳 AI 숙소 추천 시스템 아키텍처</title>
+  <desc id="desc">실시간 숙소 추천, ADK Agent Engine, 공공데이터 배치 적재 흐름을 보여주는 시스템 아키텍처</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#EEF4FF"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#101C3C"/>
+      <stop offset="0.6" stop-color="#183B76"/>
+      <stop offset="1" stop-color="#2457A7"/>
+    </linearGradient>
+    <linearGradient id="result" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E8FFF3"/>
+      <stop offset="1" stop-color="#DDF7EA"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#14213D" flood-opacity="0.10"/>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#14213D" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3867B2"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7657C7"/>
+    </marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#138B83"/>
+    </marker>
+    <style>
+      text { font-family: Pretendard, "Noto Sans KR", "Malgun Gothic", Arial, sans-serif; }
+      .lane-title { font-size: 20px; font-weight: 800; fill: #18345F; }
+      .lane-sub { font-size: 14px; font-weight: 600; fill: #6C7D99; }
+      .card-title { font-size: 19px; font-weight: 800; fill: #172744; }
+      .card-body { font-size: 14px; font-weight: 600; fill: #60718C; }
+      .mini-title { font-size: 17px; font-weight: 800; fill: #172744; }
+      .mini-body { font-size: 13px; font-weight: 600; fill: #60718C; }
+      .step { font-size: 13px; font-weight: 800; fill: #FFFFFF; }
+      .arrow-label { font-size: 12px; font-weight: 800; fill: #3867B2; }
+      .chip { font-size: 13px; font-weight: 750; fill: #EAF1FF; }
+    </style>
+  </defs>
+
+  <rect width="1800" height="1220" fill="url(#bg)"/>
+  <circle cx="1670" cy="95" r="180" fill="#5D8FF0" opacity="0.08"/>
+  <circle cx="1550" cy="-20" r="120" fill="#78C8BA" opacity="0.10"/>
+
+  <!-- Header -->
+  <rect x="50" y="34" width="1700" height="112" rx="28" fill="url(#hero)" filter="url(#shadow)"/>
+  <rect x="78" y="62" width="48" height="48" rx="14" fill="#FFFFFF" opacity="0.16"/>
+  <path d="M91 99V79h8v20m7 0V72h8v27" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+  <text x="148" y="82" font-size="30" font-weight="850" fill="#FFFFFF">머물곳 | AI 숙소 추천 시스템 아키텍처</text>
+  <text x="148" y="114" font-size="16" font-weight="600" fill="#DDE9FF">실시간 추천 · 공공데이터 파이프라인 · 관리형 AI Agent · 운영 관측성</text>
+  <rect x="1475" y="68" width="235" height="42" rx="21" fill="#FFFFFF" opacity="0.14"/>
+  <circle cx="1502" cy="89" r="7" fill="#66E3B4"/>
+  <text x="1521" y="95" font-size="15" font-weight="800" fill="#FFFFFF">SEOUL MVP · GCP</text>
+
+  <!-- Realtime lane -->
+  <rect x="50" y="170" width="1700" height="390" rx="28" fill="#FFFFFF" stroke="#DCE6F5" stroke-width="2" filter="url(#softShadow)"/>
+  <rect x="50" y="170" width="12" height="390" rx="6" fill="#3F72C8"/>
+  <rect x="82" y="194" width="84" height="28" rx="14" fill="#E7F0FF"/>
+  <text x="124" y="214" text-anchor="middle" font-size="13" font-weight="850" fill="#3162B0">실시간</text>
+  <text x="182" y="215" class="lane-title">사용자 요청 → 추천 결과</text>
+  <text x="510" y="215" class="lane-sub">여행 장소와 체류 의도를 이해하고 실제 대중교통·도보 동선으로 숙소를 평가</text>
+
+  <!-- flow arrows -->
+  <g fill="none" stroke="#3867B2" stroke-width="3" marker-end="url(#arrow)">
+    <path d="M285 365 H315"/>
+    <path d="M485 365 H515"/>
+    <path d="M685 365 H715"/>
+    <path d="M885 365 H915"/>
+    <path d="M1085 365 H1115"/>
+    <path d="M1285 365 H1315"/>
+    <path d="M1485 365 H1515"/>
+  </g>
+
+  <!-- card 1 -->
+  <g filter="url(#softShadow)">
+    <rect x="95" y="255" width="190" height="220" rx="22" fill="#F2F7FF" stroke="#BCD2F4" stroke-width="2"/>
+    <circle cx="124" cy="281" r="17" fill="#3971C6"/><text x="124" y="286" text-anchor="middle" class="step">1</text>
+    <rect x="119" y="312" width="142" height="82" rx="13" fill="#FFFFFF" stroke="#7EA7E3" stroke-width="3"/>
+    <path d="M131 377H249M190 394v12M165 406h50" fill="none" stroke="#7EA7E3" stroke-width="3" stroke-linecap="round"/>
+    <text x="190" y="431" text-anchor="middle" class="card-title">브라우저</text>
+    <text x="190" y="455" text-anchor="middle" class="card-body">React · Leaflet</text>
+  </g>
+
+  <!-- card 2 -->
+  <g filter="url(#softShadow)">
+    <rect x="315" y="255" width="170" height="220" rx="22" fill="#F5F1FF" stroke="#D3C2F5" stroke-width="2"/>
+    <circle cx="344" cy="281" r="17" fill="#7255BC"/><text x="344" y="286" text-anchor="middle" class="step">2</text>
+    <path d="M365 337c20-31 50-31 70 0 27-7 43 7 43 28 0 22-17 35-39 35h-76c-22 0-39-13-39-35 0-20 15-34 41-28z" fill="#FFFFFF" stroke="#9B82D4" stroke-width="3"/>
+    <text x="400" y="431" text-anchor="middle" class="card-title">Cloud Run</text>
+    <text x="400" y="455" text-anchor="middle" class="card-body">Express API</text>
+  </g>
+
+  <!-- card 3 -->
+  <g filter="url(#softShadow)">
+    <rect x="515" y="255" width="170" height="220" rx="22" fill="#FFF8E8" stroke="#F0D695" stroke-width="2"/>
+    <circle cx="544" cy="281" r="17" fill="#C58922"/><text x="544" y="286" text-anchor="middle" class="step">3</text>
+    <path d="M600 311l10 27 27 10-27 10-10 27-10-27-27-10 27-10z" fill="#F4BD4C"/>
+    <circle cx="638" cy="320" r="8" fill="#F4BD4C"/><circle cx="563" cy="383" r="6" fill="#F4BD4C"/>
+    <text x="600" y="420" text-anchor="middle" class="card-title">Gemini</text>
+    <text x="600" y="444" text-anchor="middle" class="card-body">일정·체류시간</text>
+    <text x="600" y="464" text-anchor="middle" class="card-body">구조화</text>
+  </g>
+
+  <!-- card 4 -->
+  <g filter="url(#softShadow)">
+    <rect x="715" y="255" width="170" height="220" rx="22" fill="#EEF9FF" stroke="#AEDDF0" stroke-width="2"/>
+    <circle cx="744" cy="281" r="17" fill="#2581A8"/><text x="744" y="286" text-anchor="middle" class="step">4</text>
+    <path d="M800 306c-23 0-41 17-41 39 0 31 41 65 41 65s41-34 41-65c0-22-18-39-41-39z" fill="#55B9DE"/>
+    <circle cx="800" cy="345" r="14" fill="#FFFFFF"/>
+    <text x="800" y="431" text-anchor="middle" class="card-title">Places API</text>
+    <text x="800" y="455" text-anchor="middle" class="card-body">장소 좌표 확인</text>
+  </g>
+
+  <!-- card 5 -->
+  <g filter="url(#softShadow)">
+    <rect x="915" y="255" width="170" height="220" rx="22" fill="#EEFBF8" stroke="#A9DFD3" stroke-width="2"/>
+    <circle cx="944" cy="281" r="17" fill="#16877D"/><text x="944" y="286" text-anchor="middle" class="step">5</text>
+    <ellipse cx="1000" cy="320" rx="42" ry="14" fill="#61C8B8"/>
+    <path d="M958 320v54c0 8 19 14 42 14s42-6 42-14v-54M958 347c0 8 19 14 42 14s42-6 42-14" fill="#D8F6EF" stroke="#42A99C" stroke-width="3"/>
+    <text x="1000" y="418" text-anchor="middle" class="card-title">BigQuery</text>
+    <text x="1000" y="441" text-anchor="middle" class="card-body">+ TourAPI</text>
+    <text x="1000" y="462" text-anchor="middle" class="card-body">후보·상권 근거</text>
+  </g>
+
+  <!-- card 6 -->
+  <g filter="url(#softShadow)">
+    <rect x="1115" y="255" width="170" height="220" rx="22" fill="#EFF5FF" stroke="#B4CBF2" stroke-width="2"/>
+    <circle cx="1144" cy="281" r="17" fill="#3D6FC1"/><text x="1144" y="286" text-anchor="middle" class="step">6</text>
+    <path d="M1157 375c27-61 47-14 71-50 9-14 18-15 29-4" fill="none" stroke="#4E7FD0" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="1157" cy="375" r="9" fill="#FFFFFF" stroke="#4E7FD0" stroke-width="5"/><circle cx="1256" cy="321" r="9" fill="#FFFFFF" stroke="#4E7FD0" stroke-width="5"/>
+    <text x="1200" y="418" text-anchor="middle" class="card-title">Google Routes</text>
+    <text x="1200" y="441" text-anchor="middle" class="card-body">대중교통·도보</text>
+    <text x="1200" y="462" text-anchor="middle" class="card-body">노선·환승 계산</text>
+  </g>
+
+  <!-- card 7 -->
+  <g filter="url(#softShadow)">
+    <rect x="1315" y="255" width="170" height="220" rx="22" fill="#F6F1FF" stroke="#D4C1F4" stroke-width="2"/>
+    <circle cx="1344" cy="281" r="17" fill="#7855C4"/><text x="1344" y="286" text-anchor="middle" class="step">7</text>
+    <circle cx="1373" cy="335" r="24" fill="#A184DD"/><circle cx="1427" cy="335" r="24" fill="#A184DD"/><circle cx="1400" cy="374" r="24" fill="#7B58C6"/>
+    <path d="M1386 347l10 14m18-14l-10 14" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+    <text x="1400" y="418" text-anchor="middle" class="card-title">Vertex AI RAG</text>
+    <text x="1400" y="441" text-anchor="middle" class="card-body">관광·숙소 근거</text>
+    <text x="1400" y="462" text-anchor="middle" class="card-body">검색</text>
+  </g>
+
+  <!-- card 8 -->
+  <g filter="url(#softShadow)">
+    <rect x="1515" y="255" width="190" height="220" rx="22" fill="url(#result)" stroke="#95D7B5" stroke-width="2"/>
+    <circle cx="1544" cy="281" r="17" fill="#188B59"/><text x="1544" y="286" text-anchor="middle" class="step">8</text>
+    <rect x="1550" y="312" width="120" height="82" rx="14" fill="#FFFFFF" stroke="#4DB17E" stroke-width="3"/>
+    <path d="M1570 337h80M1570 354h55M1570 371h69" stroke="#79C49C" stroke-width="5" stroke-linecap="round"/>
+    <text x="1610" y="425" text-anchor="middle" class="card-title">Top 5 추천</text>
+    <text x="1610" y="448" text-anchor="middle" class="card-body">지도 · 채팅</text>
+    <text x="1610" y="468" text-anchor="middle" class="card-body">교통수단·소요시간</text>
+  </g>
+
+  <text x="400" y="520" text-anchor="middle" class="arrow-label">HTTPS / JSON</text>
+  <text x="1200" y="520" text-anchor="middle" class="arrow-label">실제 경로 시간으로 Top 5 재정렬</text>
+
+  <!-- Managed agent lane -->
+  <rect x="50" y="585" width="1700" height="260" rx="28" fill="#FBF9FF" stroke="#DED2F3" stroke-width="2" filter="url(#softShadow)"/>
+  <rect x="50" y="585" width="12" height="260" rx="6" fill="#7A59C4"/>
+  <rect x="82" y="609" width="122" height="28" rx="14" fill="#EEE7FF"/>
+  <text x="143" y="629" text-anchor="middle" font-size="13" font-weight="850" fill="#6949B0">관리형 Agent</text>
+  <text x="220" y="630" class="lane-title">ADK Agent Engine 도구 실행·검증 경로</text>
+  <text x="609" y="630" class="lane-sub">Cloud Run 웹 경로와 분리된 관리형 런타임에서 데이터 도구 호출 및 추적</text>
+
+  <g filter="url(#softShadow)">
+    <rect x="115" y="670" width="400" height="130" rx="22" fill="#FFFFFF" stroke="#BCA7E8" stroke-width="2"/>
+    <rect x="138" y="692" width="68" height="68" rx="20" fill="#7957C5"/>
+    <path d="M157 728l8-20 8 20 20 8-20 8-8 20-8-20-20-8z" fill="#FFFFFF" opacity="0.95"/>
+    <text x="228" y="715" class="card-title">ADK Agent Engine</text>
+    <text x="228" y="741" class="card-body">Gemini 2.5 Flash · Managed Runtime</text>
+    <text x="228" y="765" class="card-body">도구 선택 → 호출 → 근거 기반 응답</text>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <rect x="665" y="680" width="230" height="110" rx="20" fill="#FFFFFF" stroke="#A9DFD3" stroke-width="2"/>
+    <ellipse cx="715" cy="716" rx="27" ry="9" fill="#58C4B4"/><path d="M688 716v32c0 6 12 10 27 10s27-4 27-10v-32" fill="#D8F6EF" stroke="#42A99C" stroke-width="2"/>
+    <text x="760" y="721" class="mini-title">BigQuery Tool</text>
+    <text x="760" y="746" class="mini-body">후보·상권 조회</text>
+  </g>
+  <g filter="url(#softShadow)">
+    <rect x="965" y="680" width="230" height="110" rx="20" fill="#FFFFFF" stroke="#D4C1F4" stroke-width="2"/>
+    <circle cx="1015" cy="735" r="27" fill="#8B68D0"/><path d="M1002 735h26M1015 722v26" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+    <text x="1060" y="721" class="mini-title">RAG Tool</text>
+    <text x="1060" y="746" class="mini-body">근거 문서 검색</text>
+  </g>
+  <g filter="url(#softShadow)">
+    <rect x="1310" y="680" width="320" height="110" rx="20" fill="#FFFFFF" stroke="#B5C6E6" stroke-width="2"/>
+    <path d="M1348 753v-33m18 33v-52m18 52v-21m18 21v-41" stroke="#5075B6" stroke-width="7" stroke-linecap="round"/>
+    <text x="1430" y="716" class="mini-title">Cloud Trace · Logging</text>
+    <text x="1430" y="741" class="mini-body">호출 지연·오류·실행 이력</text>
+    <text x="1430" y="763" class="mini-body">관리형 런타임 관측</text>
+  </g>
+
+  <g fill="none" stroke="#7657C7" stroke-width="3" stroke-dasharray="8 7" marker-end="url(#arrowPurple)">
+    <path d="M515 716 C570 685 610 700 665 716"/>
+    <path d="M515 753 C650 820 825 820 965 753"/>
+    <path d="M1195 735 H1310"/>
+  </g>
+  <text x="584" y="691" font-size="12" font-weight="800" fill="#7657C7">도구 호출</text>
+  <text x="1224" y="722" font-size="12" font-weight="800" fill="#7657C7">관측</text>
+
+  <!-- Batch lane -->
+  <rect x="50" y="870" width="1700" height="250" rx="28" fill="#F7FCFB" stroke="#CDE7E1" stroke-width="2" filter="url(#softShadow)"/>
+  <rect x="50" y="870" width="12" height="250" rx="6" fill="#168C82"/>
+  <rect x="82" y="894" width="84" height="28" rx="14" fill="#DCF5F0"/>
+  <text x="124" y="914" text-anchor="middle" font-size="13" font-weight="850" fill="#117B72">배치</text>
+  <text x="182" y="915" class="lane-title">공공데이터 수집 → 원천 보존 → 분석·검색 계층</text>
+  <text x="622" y="915" class="lane-sub">Cloud Scheduler가 Cloud Run Job을 정기 실행해 GCS와 BigQuery를 갱신</text>
+
+  <g filter="url(#softShadow)">
+    <rect x="105" y="955" width="230" height="120" rx="20" fill="#FFFFFF" stroke="#B5D9D2" stroke-width="2"/>
+    <circle cx="155" cy="1014" r="29" fill="#E1F5F1" stroke="#48A99E" stroke-width="3"/>
+    <path d="M155 997v18l12 8" fill="none" stroke="#248F84" stroke-width="4" stroke-linecap="round"/>
+    <text x="201" y="997" class="mini-title">Cloud Scheduler</text>
+    <text x="201" y="1022" class="mini-body">주 1회 정기 실행</text>
+    <text x="201" y="1044" class="mini-body">월요일 03:00 KST</text>
+  </g>
+  <g filter="url(#softShadow)">
+    <rect x="390" y="955" width="230" height="120" rx="20" fill="#FFFFFF" stroke="#B5D9D2" stroke-width="2"/>
+    <path d="M432 1019c9-26 35-26 44 0 19-4 30 6 30 21H409c0-15 10-25 23-21z" fill="#DAF2EE" stroke="#3FA398" stroke-width="3"/>
+    <text x="510" y="997" class="mini-title">Cloud Run Job</text>
+    <text x="510" y="1022" class="mini-body">API 페이지 수집·정규화</text>
+    <text x="510" y="1044" class="mini-body">JSONL / Markdown 생성</text>
+  </g>
+  <g filter="url(#softShadow)">
+    <rect x="675" y="955" width="250" height="120" rx="20" fill="#FFFFFF" stroke="#B5D9D2" stroke-width="2"/>
+    <rect x="700" y="986" width="52" height="52" rx="14" fill="#DDF4F0"/><path d="M713 1025h26M713 1013h18M713 1001h22" stroke="#278F85" stroke-width="4" stroke-linecap="round"/>
+    <text x="770" y="997" class="mini-title">공공 API</text>
+    <text x="770" y="1022" class="mini-body">한국관광공사 TourAPI</text>
+    <text x="770" y="1044" class="mini-body">서울 열린데이터광장</text>
+  </g>
+  <g filter="url(#softShadow)">
+    <rect x="980" y="955" width="250" height="120" rx="20" fill="#FFFFFF" stroke="#B5D9D2" stroke-width="2"/>
+    <path d="M1010 997h56v48h-56z" fill="#DDF4F0" stroke="#329A90" stroke-width="3"/><path d="M1010 1009h56M1023 997v48" stroke="#329A90" stroke-width="2"/>
+    <text x="1085" y="997" class="mini-title">Cloud Storage</text>
+    <text x="1085" y="1022" class="mini-body">Raw Data Lake</text>
+    <text x="1085" y="1044" class="mini-body">원본 JSONL · RAG 문서</text>
+  </g>
+  <g filter="url(#softShadow)">
+    <rect x="1285" y="947" width="400" height="136" rx="20" fill="#FFFFFF" stroke="#B5D9D2" stroke-width="2"/>
+    <rect x="1310" y="971" width="160" height="87" rx="14" fill="#E8F8F4"/>
+    <text x="1390" y="997" text-anchor="middle" class="mini-title">BigQuery</text>
+    <text x="1390" y="1021" text-anchor="middle" class="mini-body">Raw Tables</text>
+    <text x="1390" y="1043" text-anchor="middle" class="mini-body">Curated Views</text>
+    <rect x="1492" y="971" width="168" height="87" rx="14" fill="#F2ECFF"/>
+    <text x="1576" y="997" text-anchor="middle" class="mini-title">Vertex AI RAG</text>
+    <text x="1576" y="1021" text-anchor="middle" class="mini-body">문서 임베딩</text>
+    <text x="1576" y="1043" text-anchor="middle" class="mini-body">검색 인덱스</text>
+  </g>
+
+  <g fill="none" stroke="#138B83" stroke-width="3" marker-end="url(#arrowTeal)">
+    <path d="M335 1015 H390"/>
+    <path d="M620 1015 H675"/>
+    <path d="M925 1015 H980"/>
+    <path d="M1230 1015 H1285"/>
+  </g>
+  <text x="358" y="997" class="mini-body" fill="#138B83">트리거</text>
+  <text x="1240" y="997" class="mini-body" fill="#138B83">적재·색인</text>
+
+  <!-- Foundation and evidence footer -->
+  <rect x="50" y="1140" width="1700" height="54" rx="18" fill="#172744"/>
+  <text x="78" y="1173" font-size="14" font-weight="850" fill="#AFC7EF">공통 기반</text>
+  <rect x="175" y="1152" width="240" height="30" rx="15" fill="#263B60"/><text x="295" y="1173" text-anchor="middle" class="chip" fill="#EAF1FF">Secret Manager · API Key 3종</text>
+  <rect x="430" y="1152" width="210" height="30" rx="15" fill="#263B60"/><text x="535" y="1173" text-anchor="middle" class="chip" fill="#EAF1FF">IAM · Service Account</text>
+  <rect x="655" y="1152" width="290" height="30" rx="15" fill="#263B60"/><text x="800" y="1173" text-anchor="middle" class="chip" fill="#EAF1FF">Cloud Build · Artifact Registry</text>
+  <line x1="976" y1="1154" x2="976" y2="1181" stroke="#496083"/>
+  <text x="1000" y="1173" font-size="13" font-weight="750" fill="#EAF1FF">검증:</text>
+  <text x="1052" y="1173" font-size="13" font-weight="650" fill="#C9D7ED">BigQuery 483,540행 · 숙소 후보 2,978개 · RAG 490 ACTIVE / 오류 0 · 테스트 21/21</text>
+</svg>

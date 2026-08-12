@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1040" viewBox="0 0 1800 1040" role="img" aria-labelledby="title desc">
+  <title id="title">머물곳 RAG 검색 및 BigQuery 도구 분기 흐름</title>
+  <desc id="desc">사용자 질의를 분류하여 문서 근거는 Vertex AI RAG로, 상권 수치는 BigQuery 도구로 처리하고 Gemini가 경로 결과와 함께 사용자 친화적으로 설명하는 흐름</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F8FAFC"/><stop offset="1" stop-color="#EEF4FF"/></linearGradient>
+    <linearGradient id="hero" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#101C3C"/><stop offset="0.62" stop-color="#393072"/><stop offset="1" stop-color="#6551A5"/></linearGradient>
+    <linearGradient id="answer" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E8FFF3"/><stop offset="1" stop-color="#D9F5E7"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#14213D" flood-opacity="0.11"/></filter>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#14213D" flood-opacity="0.08"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7056BD"/></marker>
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#168B80"/></marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#3D70BD"/></marker>
+    <style>
+      text { font-family: Pretendard, "Noto Sans KR", "Malgun Gothic", Arial, sans-serif; }
+      .lane { font-size: 14px; font-weight: 850; }
+      .title { font-size: 20px; font-weight: 850; fill: #172744; }
+      .body { font-size: 14px; font-weight: 650; fill: #60718C; }
+      .small { font-size: 13px; font-weight: 650; fill: #60718C; }
+      .step { font-size: 13px; font-weight: 850; fill: #FFFFFF; }
+      .label { font-size: 12px; font-weight: 850; }
+    </style>
+  </defs>
+
+  <rect width="1800" height="1040" fill="url(#bg)"/>
+  <circle cx="1680" cy="80" r="170" fill="#A98EEA" opacity="0.08"/>
+
+  <!-- Header -->
+  <rect x="50" y="34" width="1700" height="112" rx="28" fill="url(#hero)" filter="url(#shadow)"/>
+  <rect x="78" y="62" width="48" height="48" rx="14" fill="#FFFFFF" opacity="0.16"/>
+  <circle cx="102" cy="86" r="12" fill="none" stroke="#FFFFFF" stroke-width="4"/><path d="M111 95l10 10" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  <text x="148" y="82" font-size="30" font-weight="850" fill="#FFFFFF">머물곳 | RAG 검색·데이터 도구 분기 상세 흐름</text>
+  <text x="148" y="114" font-size="16" font-weight="600" fill="#E9E2FF">문서형 근거는 Vertex AI RAG로, 정형 상권 수치는 BigQuery로 처리하는 신뢰 가능한 응답 파이프라인</text>
+  <rect x="1515" y="68" width="195" height="42" rx="21" fill="#FFFFFF" opacity="0.14"/>
+  <circle cx="1542" cy="89" r="7" fill="#70E0B6"/>
+  <text x="1561" y="95" font-size="15" font-weight="800" fill="#FFFFFF">GROUNDED AI</text>
+
+  <!-- Lane backgrounds -->
+  <rect x="50" y="174" width="1700" height="170" rx="26" fill="#FFFFFF" stroke="#DDE6F4" stroke-width="2" filter="url(#soft)"/>
+  <rect x="50" y="370" width="1700" height="385" rx="26" fill="#FCFAFF" stroke="#E0D5F4" stroke-width="2" filter="url(#soft)"/>
+  <rect x="50" y="781" width="1700" height="200" rx="26" fill="#F7FCFB" stroke="#CEE7E2" stroke-width="2" filter="url(#soft)"/>
+  <rect x="50" y="174" width="12" height="170" rx="6" fill="#3D70BD"/>
+  <rect x="50" y="370" width="12" height="385" rx="6" fill="#7056BD"/>
+  <rect x="50" y="781" width="12" height="200" rx="6" fill="#168B80"/>
+
+  <!-- Lane 1 -->
+  <rect x="82" y="196" width="103" height="28" rx="14" fill="#E6F0FF"/><text x="133" y="216" text-anchor="middle" class="lane" fill="#3265AE">질의 이해</text>
+  <g filter="url(#soft)">
+    <rect x="115" y="238" width="280" height="78" rx="18" fill="#F2F7FF" stroke="#B9D0F1" stroke-width="2"/>
+    <circle cx="148" cy="260" r="16" fill="#3D70BD"/><text x="148" y="265" text-anchor="middle" class="step">1</text>
+    <text x="180" y="267" class="title">사용자 질의 정리</text>
+    <text x="180" y="292" class="body">장소·체류 의도·질문 유형 추출</text>
+  </g>
+  <path d="M395 277H520" fill="none" stroke="#3D70BD" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <g filter="url(#soft)">
+    <path d="M650 220L780 277 650 334 520 277z" fill="#F5F1FF" stroke="#BDA9E5" stroke-width="2"/>
+    <circle cx="650" cy="242" r="16" fill="#7056BD"/><text x="650" y="247" text-anchor="middle" class="step">2</text>
+    <text x="650" y="276" text-anchor="middle" class="title">질문 유형 판별</text>
+    <text x="650" y="301" text-anchor="middle" class="body">정형 상권 수치인가?</text>
+  </g>
+  <rect x="930" y="231" width="670" height="92" rx="20" fill="#F8FAFE" stroke="#CFD9E9" stroke-width="2"/>
+  <text x="964" y="263" font-size="15" font-weight="850" fill="#314A70">분기 기준</text>
+  <circle cx="978" cy="287" r="5" fill="#7056BD"/><text x="994" y="292" class="body">관광·숙소 설명, 분위기, 특징, 근거 문서 → RAG 검색</text>
+  <circle cx="1323" cy="287" r="5" fill="#168B80"/><text x="1339" y="292" class="body">매출·점포·인구 등 수치 → BigQuery 도구</text>
+
+  <!-- Branch connectors -->
+  <path d="M650 334V405H285V438" fill="none" stroke="#7056BD" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="500" y="394" class="label" fill="#7056BD">아니오 · 문서형 질문</text>
+  <path d="M780 277H1670V438" fill="none" stroke="#168B80" stroke-width="3" marker-end="url(#arrowTeal)"/>
+  <text x="1530" y="264" class="label" fill="#168B80">예 · 상권 수치 질문</text>
+
+  <!-- RAG lane title -->
+  <rect x="82" y="392" width="125" height="28" rx="14" fill="#EEE7FF"/><text x="144" y="412" text-anchor="middle" class="lane" fill="#6949B0">RAG 경로</text>
+
+  <!-- RAG cards -->
+  <g filter="url(#soft)">
+    <rect x="105" y="438" width="360" height="118" rx="20" fill="#FFFFFF" stroke="#D0C0EE" stroke-width="2"/>
+    <circle cx="138" cy="462" r="16" fill="#7056BD"/><text x="138" y="467" text-anchor="middle" class="step">3</text>
+    <text x="172" y="469" class="title">전용 코퍼스 선택</text>
+    <text x="138" y="500" class="body">관광·숙소 공공데이터로 구성된</text>
+    <text x="138" y="523" class="body">seoul-stay-public-data 코퍼스</text>
+  </g>
+  <path d="M465 497H520" fill="none" stroke="#7056BD" stroke-width="3" marker-end="url(#arrow)"/>
+  <g filter="url(#soft)">
+    <rect x="520" y="438" width="290" height="118" rx="20" fill="#FFFFFF" stroke="#D0C0EE" stroke-width="2"/>
+    <circle cx="553" cy="462" r="16" fill="#7056BD"/><text x="553" y="467" text-anchor="middle" class="step">4</text>
+    <text x="587" y="469" class="title">청크 검색</text>
+    <rect x="552" y="491" width="88" height="34" rx="17" fill="#F0EAFF"/><text x="596" y="513" text-anchor="middle" font-size="14" font-weight="850" fill="#6949B0">512 tokens</text>
+    <rect x="650" y="491" width="72" height="34" rx="17" fill="#F0EAFF"/><text x="686" y="513" text-anchor="middle" font-size="14" font-weight="850" fill="#6949B0">100 overlap</text>
+    <rect x="732" y="491" width="54" height="34" rx="17" fill="#7056BD"/><text x="759" y="513" text-anchor="middle" font-size="14" font-weight="850" fill="#FFFFFF">top-3</text>
+  </g>
+  <path d="M810 497H865" fill="none" stroke="#7056BD" stroke-width="3" marker-end="url(#arrow)"/>
+  <g filter="url(#soft)">
+    <rect x="865" y="438" width="330" height="118" rx="20" fill="#FFFFFF" stroke="#D0C0EE" stroke-width="2"/>
+    <circle cx="898" cy="462" r="16" fill="#7056BD"/><text x="898" y="467" text-anchor="middle" class="step">5</text>
+    <text x="932" y="469" class="title">근거 품질 검증</text>
+    <path d="M901 505l11 11 22-27" fill="none" stroke="#24A16E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="949" y="503" class="body">빈 컨텍스트 제외</text>
+    <text x="949" y="528" class="body">출처 URI 존재·형식 확인</text>
+  </g>
+
+  <!-- BigQuery side branch -->
+  <g filter="url(#soft)">
+    <rect x="1480" y="438" width="220" height="118" rx="20" fill="#EEFBF8" stroke="#A8DDD3" stroke-width="2"/>
+    <circle cx="1513" cy="462" r="16" fill="#168B80"/><text x="1513" y="467" text-anchor="middle" class="step">3B</text>
+    <ellipse cx="1545" cy="510" rx="27" ry="9" fill="#5BC3B3"/><path d="M1518 510v28c0 6 12 10 27 10s27-4 27-10v-28" fill="#D8F6EF" stroke="#42A99C" stroke-width="2"/>
+    <text x="1590" y="500" class="title">BigQuery</text>
+    <text x="1590" y="525" class="body">정형 수치 조회</text>
+  </g>
+
+  <!-- Evidence merge -->
+  <path d="M1030 556V629H1240" fill="none" stroke="#7056BD" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M1590 556V629H1450" fill="none" stroke="#168B80" stroke-width="3" marker-end="url(#arrowTeal)"/>
+  <g filter="url(#soft)">
+    <rect x="1240" y="587" width="210" height="84" rx="20" fill="#FFFFFF" stroke="#B9CBE9" stroke-width="2"/>
+    <text x="1345" y="619" text-anchor="middle" class="title">검증된 근거</text>
+    <text x="1345" y="645" text-anchor="middle" class="body">텍스트 + URI 또는 수치</text>
+  </g>
+  <path d="M1240 629H790" fill="none" stroke="#3D70BD" stroke-width="3" marker-end="url(#arrowBlue)"/>
+
+  <!-- Routes parallel input and Gemini -->
+  <g filter="url(#soft)">
+    <rect x="105" y="604" width="290" height="105" rx="20" fill="#EFF5FF" stroke="#B5CCF0" stroke-width="2"/>
+    <path d="M137 669c22-48 39-11 58-38 7-10 14-11 22-3" fill="none" stroke="#4E7FD0" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="137" cy="669" r="7" fill="#FFFFFF" stroke="#4E7FD0" stroke-width="4"/><circle cx="216" cy="628" r="7" fill="#FFFFFF" stroke="#4E7FD0" stroke-width="4"/>
+    <text x="242" y="635" class="title">Google Routes</text>
+    <text x="242" y="660" class="body">교통수단·소요시간</text>
+    <text x="242" y="682" class="body">노선·환승 결과</text>
+  </g>
+  <path d="M395 656H550" fill="none" stroke="#3D70BD" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <g filter="url(#soft)">
+    <rect x="550" y="587" width="240" height="138" rx="22" fill="#FFF8E8" stroke="#F0D695" stroke-width="2"/>
+    <circle cx="583" cy="612" r="16" fill="#C58922"/><text x="583" y="617" text-anchor="middle" class="step">6</text>
+    <path d="M670 611l9 24 24 9-24 9-9 24-9-24-24-9 24-9z" fill="#F4BD4C"/>
+    <text x="670" y="695" text-anchor="middle" class="title">Gemini</text>
+    <text x="670" y="716" text-anchor="middle" class="small">근거 + 경로 결과 결합</text>
+  </g>
+
+  <!-- Output lane -->
+  <rect x="82" y="803" width="113" height="28" rx="14" fill="#DCF5F0"/><text x="138" y="823" text-anchor="middle" class="lane" fill="#117B72">응답 생성</text>
+  <path d="M670 725V856H865" fill="none" stroke="#168B80" stroke-width="3" marker-end="url(#arrowTeal)"/>
+  <g filter="url(#soft)">
+    <rect x="865" y="824" width="350" height="110" rx="22" fill="url(#answer)" stroke="#91D2B1" stroke-width="2"/>
+    <circle cx="900" cy="849" r="16" fill="#168B59"/><text x="900" y="854" text-anchor="middle" class="step">7</text>
+    <text x="935" y="856" class="title">사용자 친화적 추천 설명</text>
+    <text x="900" y="888" class="body">가중평균 대신 “지하철 24분·환승 1회”처럼</text>
+    <text x="900" y="911" class="body">이유와 이동 정보를 쉬운 말로 제시</text>
+  </g>
+  <path d="M1215 879H1305" fill="none" stroke="#168B80" stroke-width="3" marker-end="url(#arrowTeal)"/>
+  <g filter="url(#soft)">
+    <rect x="1305" y="824" width="360" height="110" rx="22" fill="#FFFFFF" stroke="#A8DCCF" stroke-width="2"/>
+    <circle cx="1340" cy="849" r="16" fill="#168B59"/><text x="1340" y="854" text-anchor="middle" class="step">8</text>
+    <text x="1375" y="856" class="title">출처 URI 표시</text>
+    <path d="M1340 888h38M1340 908h77" stroke="#4AA786" stroke-width="5" stroke-linecap="round"/>
+    <text x="1435" y="891" class="body">검증된 근거만 인용</text>
+    <text x="1435" y="914" class="body">근거 없는 단정 방지</text>
+  </g>
+
+  <!-- Legend -->
+  <rect x="95" y="938" width="590" height="28" rx="14" fill="#EDF2FA"/>
+  <circle cx="120" cy="952" r="6" fill="#7056BD"/><text x="136" y="957" class="small">비정형 문서 근거</text>
+  <circle cx="295" cy="952" r="6" fill="#168B80"/><text x="311" y="957" class="small">정형 수치 근거</text>
+  <circle cx="454" cy="952" r="6" fill="#3D70BD"/><text x="470" y="957" class="small">실제 이동 경로</text>
+  <text x="610" y="957" class="small">→ Gemini에서 하나의 설명으로 통합</text>
+</svg>
